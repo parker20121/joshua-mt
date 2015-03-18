@@ -1,14 +1,15 @@
-FROM parker20121/xdata-hive-cli:cdh53
+FROM centos:7
 
 MAINTAINER Matt Parker <matthew.parker at l-3com.com>
 
+ENV container docker
+
+# Enable Universal package repository
 RUN yum install --assumeyes boost-devel gcc-c++ zlib-devel nano ant wget
 
-WORKINGDIR /opt
+ADD http://joshua-decoder.org/releases/6.0/ /opt
 
-ADD http://joshua-decoder.org/releases/6.0/
-
-RUN tar -xf joshua-v6.0.1.tgz
+RUN tar -xf /opt/joshua-v6.0.1.tgz --dir /opt
 ENV JOSHUA=/opt/joshua-v6.0.1
 
 WORKINGDIR ${JOSHUA}
