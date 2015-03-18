@@ -16,8 +16,8 @@ ENV JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.75-2.5.4.2.el7_0.x86_64
 
 # Compile ken lib and link to joshua lib folder
 WORKDIR ${JOSHUA}
-RUN ant kenlm install
-# RUN ln -s /lib/libken.so ${JOSHUA}/lib/libken.so
+RUN ant kenlm
+RUN ln -s /lib/libken.so ${JOSHUA}/lib/libken.so
 
 # Open server port
 EXPOSE 5674
