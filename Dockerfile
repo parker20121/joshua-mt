@@ -1,6 +1,6 @@
 FROM parker20121/xdata-hive-cli:cdh53
 
-MAINTAINER Matt Parker <matthew.parker@l-3com.com>
+MAINTAINER Matt Parker <matthew.parker at l-3com.com>
 
 RUN yum install --assumeyes boost-devel gcc-c++ zlib-devel nano ant wget
 
