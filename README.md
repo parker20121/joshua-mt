@@ -4,7 +4,7 @@ This application assumes you have the Joshua-decoder service installed and that 
 
 Setup
 
-Change Joshua/setting.py JOSHUA_SCRIPT_EXECUTABLE and JOSHUA_SCRIPT_FILENAME to reflect your Joshua-decoder server setup.  See conf/translate_input.sh for sample scripts that read from stdin and netcat to Joshua-decoder server
+Change Joshua/setting.py JOSHUA_SCRIPT_EXECUTABLE, JOSHUA_SCRIPT_FILENAME and JOSHUA_WEB_API_SUPPORT_LANGUAGES to reflect your Joshua-decoder server setup.  See conf/translate_input.sh for sample scripts that read from stdin and netcat to Joshua-decoder server
 
 
 The following python dependences are required.
@@ -41,9 +41,14 @@ To start the Django server:
    cd Joshua 
   python manage.py runserver 0.0.0.0:80
  
-The API will then be available at:
-http://localhost:80/api/translation/?format=json&orig_text=" " , it also support format=xml
-http://localhost:80 will return a user interface to enter text in the text area.
+The API will allow both GET and POST method, they are available at :
+http://localhost/api/translation/schema/?format=xml
+http://localhost/api/translation/?format=json&orig_language=x&orig_text=" " , it also support format=xml
+example:
+   curl http://localhost/api/translation/?format=json&orig_language=ar&orig_text="كيف حال الطقس اليوم"
+   curl -H "Content-Type: application/json;charset=UTF-8" -X POST -d '{"orig_language": "ar", "orig_text": "كيف حال الطقس اليوم"}' http://localhost/api/translation/
+   
+ http://localhost will return a user interface to allow user interact with server using textarea.
 
 To start up django server automatically in centos, install supervisord in centos and put
 conf/supervisord/django_cms.conf to the include folder.
@@ -52,7 +57,7 @@ conf/supervisord/django_cms.conf to the include folder.
 
 For a production configuration, you might want to deploying Django with Apache and mod_wsgi:
 
- install mod_wsgi to your Apache server, append your Apache server’s 
+ install mod_wsgi to your Apache server, append your Apache serverâ€™s 
  httpd.conf file with conf/apache/httpd.conf file.
  this assume, you are copying Joshua-web folder to /var/www/ folder.
  
