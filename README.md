@@ -1,4 +1,4 @@
-This package serves as API and UI for a Joshua-decoder based Arabic to English translation service. Joshua-decoder is a Machine Translation ToolKit, for more details, see http://joshua-decoder.org/
+This package serves as API and UI for a Joshua-decoder based translation service. Joshua-decoder is a Machine Translation ToolKit, for more details, see http://joshua-decoder.org/
 
 This application assumes you have the Joshua-decoder service installed and that you can call Joshua scripts.
 
@@ -42,10 +42,13 @@ To start the Django server:
   python manage.py runserver 0.0.0.0:80
  
 The API will allow both GET and POST method, they are available at :
+
 http://localhost/api/translation/schema/?format=xml
-http://localhost/api/translation/?format=json&orig_language=x&orig_text=" " , it also support format=xml
+http://localhost/api/translation/?format=json&orig_language=x&orig_text=" " , 
+it also support format=xml
 example:
    curl http://localhost/api/translation/?format=json&orig_language=ar&orig_text="كيف حال الطقس اليوم"
+  
    curl -H "Content-Type: application/json;charset=UTF-8" -X POST -d '{"orig_language": "ar", "orig_text": "كيف حال الطقس اليوم"}' http://localhost/api/translation/
    
  http://localhost will return a user interface to allow user interact with server using textarea.
