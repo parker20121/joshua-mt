@@ -13,12 +13,9 @@ app.controller("myTranslationCtrl", function($scope, $http) {
 
 		if($scope.last_text!=$scope.orig_text)
 		{
-			console.log("last_text.length"+$scope.last_text.length+"this text length"+$scope.orig_text.length);
+			//console.log("last_text.length"+$scope.last_text.length+"this text length"+$scope.orig_text.length);
 			
-			//10.1.70.133:873
-			var urlStr=$("input#api_url").val()+'?format=json&org_language='+$scope.languages+'&orig_text="'+$scope.orig_text+'"';
-
-			console.log("requesting translation using api"+urlStr);
+			
 			theData={orig_language: $scope.languages, orig_text: $scope.orig_text}
 			$http.post($("input#api_url").val(), theData, {headers: {'Content-Type': 'application/json'} })
 	        .then(function (response) {
@@ -26,8 +23,14 @@ app.controller("myTranslationCtrl", function($scope, $http) {
 	        	$scope.translated_text=response.data.translated_text;
 	           
 	        });
+			/* use POST instead of GET*/
 			
 			/*
+			 * 
+			 //10.1.70.133:873
+			//var urlStr=$("input#api_url").val()+'?format=json&org_language='+$scope.languages+'&orig_text="'+$scope.orig_text+'"';
+
+			//console.log("requesting translation using api"+urlStr);
 			$http.get(urlStr).
 			success(function(data, status, headers, config) {
 				// this callback will be called asynchronously

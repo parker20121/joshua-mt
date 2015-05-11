@@ -113,9 +113,9 @@ JOSHUA_SCRIPT_EXECUTABLE = 'sh'
 JOSHUA_SCRIPT_FILENAME="/opt/joshua-v6.0.1/translate_input_with_language.sh"
 #JOSHUA_SCRIPT_FILENAME="/home/ubuntu/xdata-arabic-translate-service/translate_input.sh"
 
-JOSHUA_WEB_API_URL="http://10.1.93.168/api/translation/"
+#JOSHUA_WEB_API_URL="http://10.1.93.168/api/translation/"
 
-#JOSHUA_WEB_API_URL="http://localhost:8000/api/translation/"
+JOSHUA_WEB_API_URL="http://localhost:8000/api/translation/"
 #languages that are supported by API
 #each language is ISO 2 letter language code supported by API  and should be seperated by space. for example "en fr it ar"
 JOSHUA_WEB_API_SUPPORT_LANGUAGES="ar"
