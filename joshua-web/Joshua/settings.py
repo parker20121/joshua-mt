@@ -12,11 +12,11 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import socket
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -41,11 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tastypie',
-  
-   
-   
-     
+    'tastypie',     
 )
 
 MIDDLEWARE_CLASSES = (
@@ -115,7 +111,13 @@ JOSHUA_SCRIPT_FILENAME="/opt/joshua-v6.0.1/translate_input_with_language.sh"
 
 #JOSHUA_WEB_API_URL="http://10.1.93.168/api/translation/"
 
-JOSHUA_WEB_API_URL="http://localhost:8000/api/translation/"
+# Hack to get IP Address
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(('8.8.8.8', 0))  
+local_ip_address = s.getsockname()[0]import socket
+
+JOSHUA_WEB_API_URL="http:// + local_ip_address + ":8000/api/translation/"
+
 #languages that are supported by API
 #each language is ISO 2 letter language code supported by API  and should be seperated by space. for example "en fr it ar"
 JOSHUA_WEB_API_SUPPORT_LANGUAGES="ar"
