@@ -55,6 +55,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
+XS_SHARING_ALLOWED_ORIGINS = '*'
+XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']
+
 ROOT_URLCONF = 'Joshua.urls'
 
 TEMPLATES = [
@@ -112,11 +115,13 @@ JOSHUA_SCRIPT_FILENAME="/opt/joshua-v6.0.1/translate_input_with_language.sh"
 #JOSHUA_WEB_API_URL="http://10.1.93.168/api/translation/"
 
 # Hack to get IP Address
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s.connect(('8.8.8.8', 0))  
-local_ip_address = s.getsockname()[0]import socket
+#s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+#s.connect(('8.8.8.8', 0))  
+#local_ip_address = s.getsockname()[0]
 
-JOSHUA_WEB_API_URL="http:// + local_ip_address + ":8000/api/translation/"
+JOSHUA_WEB_API_URL="http://0.0.0.0:8000/api/translation/"
+
+print JOSHUA_WEB_API_URL
 
 #languages that are supported by API
 #each language is ISO 2 letter language code supported by API  and should be seperated by space. for example "en fr it ar"
